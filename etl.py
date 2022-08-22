@@ -27,6 +27,12 @@ def process_log_file(cur, filepath):
 
     # convert timestamp column to datetime
     t = df.astype({'ts':'datetime64[ns]'})
+    t['hour'] = t['ts'].dt.hour
+    t['day'] = t['ts'].dt.day
+    t['week'] = t['ts'].dt.week
+    t['month'] = t['ts'].dt.month
+    t['weekday'] = t['ts'].dt.weekday
+    t['year'] = t['ts'].dt.year
     
     # insert time data records
     time_data = time_data = [list(e) for e in t[['ts', 'hour', 'day', 'week', 'month', 'weekday', 'year']].values]
