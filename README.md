@@ -14,3 +14,6 @@ The files fund in the repository are the following:
 - test.ipynb: jupyter notebook with some test to assure the quality of the proccess
 
 This project has been developed as part of the Udacity Data Engineer Nanodegree.
+
+# Running the ETL
+To run the ETL process, simply execute etl.py from the main parent directory.

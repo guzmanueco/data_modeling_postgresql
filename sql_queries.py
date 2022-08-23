@@ -31,7 +31,7 @@ user_table_create = ("""CREATE TABLE IF NOT EXISTS users
 song_table_create = ("""CREATE TABLE IF NOT EXISTS songs
                         (song_id varchar NOT NULL UNIQUE PRIMARY KEY,
                          title varchar NOT NULL,
-                         artist_id varchar,
+                         artist_id varchar NOT NULL,
                          year int,
                          duration float NOT NULL)
                          """)
@@ -45,7 +45,7 @@ artist_table_create = ("""CREATE TABLE IF NOT EXISTS artists
                           """)
 
 time_table_create = ("""CREATE TABLE IF NOT EXISTS time
-                        (start_time timestamp,
+                        (start_time timestamp UNIQUE NOT NULL PRIMARY KEY,
                          hour int,
                          day int,
                          week int,
@@ -89,6 +89,11 @@ song_select = ("""SELECT s.song_id, a.artist_id
                   FROM songs s
                   LEFT JOIN artists a
                   ON s.artist_id=a.artist_id
+                  WHERE s.title = %s 
+                      AND a.name = %s 
+                      AND s.duration = %s 
+                      AND s.song_id IS NOT NULL 
+                      AND a.artist_id IS NOT NULL
                 """)
 
 # QUERY LISTS
